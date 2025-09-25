@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home - Malaria Portal{% endblock %}
+{% block content %}
+<div class="card shadow-lg rounded-4 p-5 mx-auto animate__animated animate__fadeIn" style="max-width: 600px; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);">
+  <h2 class="mb-4 text-center">
+    <i class="fas fa-microscope text-primary me-2"></i>
+    Malaria Detection from Blood Smear Image
+  </h2>
+
+  <form method="POST" enctype="multipart/form-data" class="mb-4">
+    <input class="form-control mb-3" type="file" name="image" accept="image/*" required>
+    <button type="submit" class="btn btn-success btn-lg w-100 animate__animated animate__pulse animate__infinite">
+      <i class="fas fa-magic me-2"></i>Predict
+    </button>
+  </form>
+
+  {% if image_url %}
+  <div class="text-center mb-3">
+    <h5>Uploaded Image:</h5>
+    <img src="{{ image_url }}" alt="Uploaded Image" class="img-thumbnail shadow rounded" style="max-width: 300px;" />
+  </div>
+  {% endif %}
+
+  {% if result %}
+  <div class="alert alert-info text-center animate__animated animate__fadeInUp">
+    <strong><i class="fas fa-robot me-2"></i>Prediction Result:</strong> {{ result }}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
